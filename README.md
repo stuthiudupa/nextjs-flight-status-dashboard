@@ -1,0 +1,1 @@
+Created a basic next app. Explored how to create graphs and call the Opensky api. Need to add css using tailwind or bootstrap.
