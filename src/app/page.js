@@ -1,34 +1,31 @@
-import CurrentTraffic from './components/arrivalsByAirport';
-import ArrivalsTimeSeries from './components/arrivals';
+// pages/index.js
 
+import Head from 'next/head';
+import Image from 'next/image';
 
-const HomePage = async () => {
-  const icao = 'e49406'; //sample
-  const res = await fetch(`https://opensky-network.org/api/states/all?icao24=${icao}`);
+import Header from '../app/components/Header'
+import Cards from '../app/components/Cards'
+import BarChart from './components/BarChart'
+import PieChart from './components/Departures'
 
-  if (!res.ok) {
-    const errorDetails = await res.text();
-    console.error('API error:', res.status, res.statusText, errorDetails);
-    return (
-      <div>
-        <h1>Error {res.status}: {res.statusText}</h1>
-        <pre>{errorDetails}</pre>
-      </div>
-    );
-  }
-
-  const data = await res.json(); 
-
+export default function Home() {
   return (
-    <div>
-      <h1>OpenSky Data</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre> 
-      <h2>Graphs</h2>
-    <ArrivalsTimeSeries/>
-    <CurrentTraffic/>
-    </div>
+    <>
+      <Head>
+        <title>Flight Status Dashboard</title>
+        <meta name="description" content="Created with NextJS and TailwindCSS" />
+        <meta name='viewport' content='width=device-width, initial-scale=1'/>
+        <link rel="icon" href="/favicon.ico" />
+      </Head>
 
+      <main className='bg-gray-200 min-h-screen'>
+        <Header/>
+        <Cards/>
+        <div className='p-4 grid md:grid-cols-3 grid-cols-1 gap-4'>
+            <BarChart/>
+            <PieChart/>
+        </div>
+      </main>
+      </>
   );
-};
-
-export default HomePage;
+}
