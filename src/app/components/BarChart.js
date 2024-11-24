@@ -20,20 +20,24 @@ ChartJS.register(
     Tooltip,
     Legend
 );
+  
 
-const BarChart = () => {
+const BarChart = ({ airportCount }) => {
     const [chartData, setChartData] = useState({
         datasets: [],
     });
     const [chartOptions, setChartOptions] = useState({});
 
     useEffect(() => {
+
+        const labels = airportCount.map(entry => entry.airport); 
+        const data = airportCount.map(entry => entry.count);
         setChartData({
-            labels: ['Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat', 'Sun'],
+            labels,
             datasets: [
                 {
-                    label: 'Arrivals per day',
-                    data: [7, 7, 4, 8, 8, 3, 3],
+                    label: 'Arrivals by airport',
+                    data,
                     borderColor: 'rgb(53, 162, 235)',
                     backgroundColor: 'rgba(105, 34, 177,0.4)',  
                 }, 
@@ -47,7 +51,7 @@ const BarChart = () => {
                 },
                 title: {
                     display: true,
-                    text: 'Arrivals per day',
+                    text: 'Arrivals by airport',
                 },
             },
             maintainAspectRatio: false,
