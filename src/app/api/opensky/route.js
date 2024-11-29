@@ -35,7 +35,7 @@ export async function GET() {
         const busiestAirport = Object.entries(airportFrequency).sort((a, b) => b[1] - a[1])[0] || [];
 
         const latestFlights = flights
-        .filter(flight => flight.estArrivalAirport !== null) 
+        .filter(flight => flight.estDepartureAirport !== null) 
         .sort((a, b) => b.lastSeen - a.lastSeen)
         .slice(0, 20).map(flight => {
             const now = Date.now(); 
@@ -47,7 +47,7 @@ export async function GET() {
         
             return {
                 icao24: flight.icao24,
-                estArrivalAirport: flight.estArrivalAirport,
+                estDepartureAirport: flight.estDepartureAirport,
                 lastSeen: `${hours} hours ${minutes} minutes ago`
             };
         });

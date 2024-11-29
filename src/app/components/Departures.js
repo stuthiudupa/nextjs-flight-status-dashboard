@@ -55,7 +55,7 @@ const Departures = ({ departureData }) => {
               </div>
               <div className="pl-4">
                 <p className="text-gray-800 font-bold">{order.icao24}</p>
-                <p className="text-gray-400 text-sm">{order.estArrivalAirport}</p>
+                <p className="text-gray-400 text-sm">{order.estDepartureAirport}</p>
               </div>
               <p className="lg:flex md:hidden absolute right-6 text-sm">
                 {order.lastSeen}
