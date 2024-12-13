@@ -1,1 +1,0 @@
-Dashboard using Tailwind css and Charts.js
